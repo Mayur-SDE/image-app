@@ -1,17 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { saveAs } from "file-saver";
-
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, Container } from "@material-ui/core";
-import { grey } from "@material-ui/core/colors";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
 // import { file } from 'jszip';
 var zip = require("jszip")();
 
 function App() {
   const [files, setFiles] = useState([]);
-  const classes = useStyles();
 
   //input coverting multiple images to zip files
   const covertBaseImages = (Images) => {
@@ -70,51 +64,18 @@ function App() {
   };
 
   return (
-    <div className={classes.divRoot}>
-      <div>
-        <title>
-          <hi>Visionify</hi>
-        </title>
-      </div>
-      <div>
-        <input
-          className={classes.inputDiv}
-          type="file"
-          id="file"
-          multiple
-          onChange={(e) => covertBaseImages(e.target.files)}
-        ></input>
-      </div>
-      <div>
-        <Button className={classes.buttonInfo} onClick={() => exportZip()}>
-          Download
-        </Button>
-      </div>
+    <div className="App">
+      <br></br>
+      <input
+        type="file"
+        multiple
+        onChange={(e) => covertBaseImages(e.target.files)}
+      ></input>
+      <br></br>
+
+      <button onClick={() => exportZip()}>Download</button>
     </div>
   );
 }
 
 export default App;
-
-const useStyles = makeStyles((theme) => ({
-  divRoot: {
-    background: "#008080",
-    height: "100vh",
-    width: "120wh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  inputDiv: {
-    background: "grey",
-    height: "20px",
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-  },
-  buttonInfo: {
-    color: "#fff",
-    background: "grey",
-  },
-}));
