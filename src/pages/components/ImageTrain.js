@@ -1,10 +1,39 @@
 import React from "react";
 import { useState } from "react";
 import { saveAs } from "file-saver";
+import { Button, makeStyles } from "@material-ui/core";
+import { useDropzone } from "react-dropzone";
+import "../components/image.scss";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
 // import { file } from 'jszip';
 var zip = require("jszip")();
 
-function App() {
+const useStyle = makeStyles((theme) => ({
+  root: {
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+    },
+  },
+  buttonInfo: {
+    backgroundColor: "teal",
+  },
+  buttonDiv: {
+    paddingTop: "25%",
+    justifyContent: "center",
+    alignContent: "center",
+    position: "center",
+  },
+}));
+
+function ImageTrain() {
+  const classes = useStyle();
   const [files, setFiles] = useState([]);
 
   //input coverting multiple images to zip files
@@ -64,18 +93,32 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <br></br>
-      <input
-        type="file"
-        multiple
-        onChange={(e) => covertBaseImages(e.target.files)}
-      ></input>
-      <br></br>
+    <>
+      <div className="file-card" id="place-to-visit">
+        <div className="file-inputs">
+          <input
+            accept="image/*"
+            multiple
+            type="file"
+            onChange={(e) => covertBaseImages(e.target.files)}
+          ></input>
+          <button>
+            <i>
+              <FontAwesomeIcon icon={faPlus} />
+            </i>
+            Click Here
+          </button>
+        </div>
+        <div className="btn-wrapper">
+          <Button onClick={() => exportZip()} className="btn-default">
+            Download Images
+          </Button>
+        </div>
 
-      <button onClick={() => exportZip()}>Download</button>
-    </div>
+        <p className="main">All type of images supports</p>
+      </div>
+    </>
   );
 }
 
-export default App;
+export default ImageTrain;

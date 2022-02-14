@@ -1,0 +1,17 @@
+.titleInfo {
+  box-shadow: 0px 10px 30px rgba(157, 240, 157, 0.5);
+  flex-grow: 1;
+  color: black;
+  padding-left: 10px;
+  background: transparent;
+  text-shadow: 1px 1px 2px rgb(46, 44, 44), 0 0 1em rgb(1, 1, 10),
+    0 0 0.2em rgb(13, 13, 14);
+  color: black;
+  font: 3em Georgia, serif;
+}
+.white-text-with-blue-shadow {
+  text-shadow: red 0 -2px;
+  font-size: 600%;
+  letter-spacing: -0.5px;
+  word-spacing: -10px;
+}
