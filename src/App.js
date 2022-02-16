@@ -1,9 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
+import { Button, CssBaseline, IconButton } from "@material-ui/core";
 import HomePage from "../src/pages/HomePage";
 import ImageTrain from "./pages/components/ImageTrain";
 import "../src/styles/style.css";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import { Link as Scroll } from "react-scroll";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,10 +52,18 @@ export default function App() {
             Visionify.ai
           </a>
         </h2>
-        {/* <LinkedInIcon className={classes.LinkedInIconInfo} />
-        <GitHubIcon className={classes.GitHubIconInfo} /> */}
+        <LinkedInIcon className={classes.LinkedInIconInfo} />
+        <GitHubIcon className={classes.GitHubIconInfo} />
       </footer>
       <fileDownloader className={classes.fileDownloaderInfo} />
+
+      <Scroll to="header" smooth={true}>
+        {/* <IconButton> */}
+        <div className="btn-container">
+          <Button className="btn-Info">Go Back</Button>
+        </div>
+        {/* </IconButton> */}
+      </Scroll>
     </div>
   );
 }

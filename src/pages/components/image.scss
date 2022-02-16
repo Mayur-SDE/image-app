@@ -4,15 +4,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px dashed #cbd5e0;
+  border: 1px dashed #c5daf3;
   background-color: transparent;
   width: 50%;
-  height: 500px;
+  height: 650px;
   margin-left: 25%;
+  color: #fff;
+  margin-top: 1em;
 
   .file-inputs {
     position: relative;
     margin-bottom: 2.5em;
+
+    .inputs:hover {
+      color: #fff;
+    }
 
     input {
       position: relative;
@@ -44,7 +50,10 @@
       outline: none;
       // padding: 1em;
       transition: background-color 0.4s;
-      text-shadow: red 0 -2px;
+      // text-shadow: red 0 -2px;
+      text-shadow: 1px 1px 2px rgb(46, 44, 44), 0 0 1em rgb(1, 1, 10),
+        0 0 0.2em rgb(13, 13, 14);
+      color: black;
       border: 0.5px dashed #cbd5e0;
 
       i {
@@ -74,9 +83,9 @@
   font-weight: 700;
   font-size: large;
   margin-bottom: 0.4rem;
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
   transition: background-color 0.4s;
-  text-shadow: red 0 -2px;
+  text-shadow: red 0 -1px;
 }
 
 .info {
@@ -91,7 +100,10 @@
   border: 1px dashed #cbd5e0;
   background: transparent;
   transition: background-color 0.4s;
-  text-shadow: red 0 -2px;
+  // text-shadow: red 0 -2px;
+  text-shadow: 1px 1px 2px rgb(46, 44, 44), 0 0 1em rgb(1, 1, 10),
+    0 0 0.2em rgb(13, 13, 14);
+  color: #fff;
 }
 
 .btn-wrapper {
@@ -99,12 +111,24 @@
   justify-content: center;
   align-items: center;
   margin-left: 530px;
-  margin-top: 20px;
+  margin-bottom: 5px;
   width: 320px;
   margin-right: 530px;
 }
 
 .btn-wrapper .btn-default:hover {
   background-color: black;
+  color: #fff;
+}
+
+.main-selector {
+  position: relative;
+  width: 10% auto;
+  width: 320px;
+}
+
+.main-selector .gutterBtn {
+  text-shadow: 1px 1px 2px rgb(46, 44, 44), 0 0 1em rgb(1, 1, 10),
+    0 0 0.2em rgb(13, 13, 14);
   color: #fff;
 }
