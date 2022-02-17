@@ -68,9 +68,16 @@ const useStyle = makeStyles((theme) => ({
 function ImageTrain() {
   const classes = useStyle();
   const [files, setFiles] = useState([]);
-  const [trainLen, settrainLen] = useState(70);
-  const [validateLen, setvalidateLen] = useState(20);
-  const [testLen, settestLen] = useState(10);
+  const [minValidate, setminValidate] = useState(70);
+  const [maxValidate, setmaxValidate] = useState(90);
+
+  let totalImages;
+  let trainImagesLen = 0;
+  let validateImagesLen;
+  let trainImages = [];
+  let validateImages = [];
+  let testImages = [];
+
   //input coverting multiple images to zip files
   const covertBaseImages = (Images) => {
     var arrayOfImages = [];
@@ -90,23 +97,15 @@ function ImageTrain() {
     // setFiles({...files, arrayOfImages});
     setFiles(arrayOfImages);
   };
-
-  const handleTrainChange = (event, newValue) => {
-    event.preventDefault();
-    settrainLen(newValue);
-    // console.log(trainLen);
-  };
-
   const handlevalidateChange = (event, newValue) => {
     event.preventDefault();
-    setvalidateLen(newValue);
-    // console.log(validateLen);
-  };
-
-  const handletestChange = (event, newValue) => {
-    event.preventDefault();
-    settestLen(newValue);
-    //console.log(testLen);
+    console.log("change");
+    setminValidate(newValue[0]);
+    setmaxValidate(newValue[1]);
+    totalImages = files.length;
+    trainImagesLen = Math.floor(totalImages * (minValidate / 100));
+    trainImages = files.slice(0, trainImagesLen);
+    console.log("trainImagesLen", newValue[0], trainImages.length);
   };
 
   //Export images
@@ -117,20 +116,22 @@ function ImageTrain() {
     var test = zip.folder("test");
     var validate = zip.folder("validate");
 
-    var totalImages = files.length;
-    var trainImagesLen = Math.floor(totalImages * (trainLen / 100));
-    var validateImagesLen =
-      Math.floor(totalImages * (validateLen / 100)) + trainImagesLen;
-    var testImagesLen =
-      Math.floor(totalImages * (testLen / 100)) + validateImagesLen;
+    totalImages = files.length;
+    trainImagesLen = Math.floor(totalImages * (minValidate / 100));
+    validateImagesLen = Math.floor(totalImages * (maxValidate / 100));
 
     console.log(" train Images", trainImagesLen);
     console.log(" Validate Images", validateImagesLen);
-    console.log("test Images", testImagesLen);
+    // console.log("test Images", testImagesLen);
 
-    var trainImages = files.slice(0, trainImagesLen);
-    var validateImages = files.slice(trainImagesLen, validateImagesLen);
-    var testImages = files.slice(validateImagesLen, totalImages);
+    validateImages = files.slice(trainImagesLen, validateImagesLen);
+    testImages = files.slice(validateImagesLen, totalImages);
+
+    //Testing Consolidation
+
+    // console.log("Train", trainImages);
+    // console.log("Valid", validateImages);
+    // console.log("Test", testImages);
 
     trainImages.map((image) => {
       train.file(image.number, image.base64, { base64: true });
@@ -157,7 +158,7 @@ function ImageTrain() {
             type="file"
             onChange={(e) => covertBaseImages(e.target.files)}
           ></input>
-          <button>
+          <button style={{ color: "#fff" }}>
             <i>
               <FontAwesomeIcon icon={faPlus} />
             </i>
@@ -172,42 +173,26 @@ function ImageTrain() {
 
         <div className="main-selector">
           <Typography gutterBottom className="gutterBtn">
-            Train
+            <p>
+              Train <br />
+              {console.log("trainImagesLen", trainImagesLen)}
+            </p>
+            <p>
+              Valid
+              <br />
+              {maxValidate}
+            </p>
           </Typography>
+
           <PrettoSlider
             valueLabelDisplay="auto"
             aria-label="pretto slider"
-            value={trainLen}
+            value={[minValidate, maxValidate]}
             step={1}
-            min={0}
-            max={100}
-            onChange={handleTrainChange}
-          />
-          <Typography gutterBottom className="gutterBtn">
-            Valid
-          </Typography>
-          <PrettoSlider
-            valueLabelDisplay="auto"
-            aria-label="pretto slider"
-            value={validateLen}
-            step={1}
-            min={0}
-            max={100}
             onChange={handlevalidateChange}
           />
-          <Typography gutterBottom className="gutterBtn">
-            Test
-          </Typography>
-          <PrettoSlider
-            valueLabelDisplay="auto"
-            aria-label="pretto slider"
-            value={testLen}
-            step={1}
-            min={0}
-            max={100}
-            onChange={handletestChange}
-          />
         </div>
+        <p>{trainImages}</p>
         <p className="main">All type of images supports</p>
       </div>
     </>
