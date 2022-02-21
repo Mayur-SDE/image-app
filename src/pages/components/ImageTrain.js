@@ -99,13 +99,12 @@ function ImageTrain() {
   };
   const handlevalidateChange = (event, newValue) => {
     event.preventDefault();
-    console.log("change");
+    // console.log("change");
     setminValidate(newValue[0]);
     setmaxValidate(newValue[1]);
     totalImages = files.length;
     trainImagesLen = Math.floor(totalImages * (minValidate / 100));
     trainImages = files.slice(0, trainImagesLen);
-    console.log("trainImagesLen", newValue[0], trainImages.length);
   };
 
   //Export images
@@ -122,29 +121,38 @@ function ImageTrain() {
 
     console.log(" train Images", trainImagesLen);
     console.log(" Validate Images", validateImagesLen);
-    // console.log("test Images", testImagesLen);
 
+    trainImages = files.slice(0, trainImagesLen);
     validateImages = files.slice(trainImagesLen, validateImagesLen);
     testImages = files.slice(validateImagesLen, totalImages);
 
-    //Testing Consolidation
-
-    // console.log("Train", trainImages);
-    // console.log("Valid", validateImages);
-    // console.log("Test", testImages);
+    // Item showing in text file
+    var trainFileName = trainImages.map((item) => {
+      return item.number;
+    });
+    var validateFileName = validateImages.map((item) => {
+      return item.number;
+    });
+    var testFileName = testImages.map((item) => {
+      return item.number;
+    });
 
     trainImages.map((image) => {
       train.file(image.number, image.base64, { base64: true });
+      train.file("train.txt", trainFileName.toString());
     });
     validateImages.map((image) => {
       validate.file(image.number, image.base64, { base64: true });
+      validate.file("Validate.txt", validateFileName.toString());
     });
     testImages.map((image) => {
       test.file(image.number, image.base64, { base64: true });
+      test.file("test.txt", testFileName.toString());
     });
     zip.generateAsync({ type: "blob" }).then(function (content) {
-      saveAs(content, "Example.zip");
+      saveAs(content, "/Example.zip");
     });
+
     zip = require("jszip")();
   };
 
@@ -172,17 +180,7 @@ function ImageTrain() {
         </div>
 
         <div className="main-selector">
-          <Typography gutterBottom className="gutterBtn">
-            <p>
-              Train <br />
-              {console.log("trainImagesLen", trainImagesLen)}
-            </p>
-            <p>
-              Valid
-              <br />
-              {maxValidate}
-            </p>
-          </Typography>
+          <Typography gutterBottom className="gutterBtn"></Typography>
 
           <PrettoSlider
             valueLabelDisplay="auto"
@@ -192,7 +190,6 @@ function ImageTrain() {
             onChange={handlevalidateChange}
           />
         </div>
-        <p>{trainImages}</p>
         <p className="main">All type of images supports</p>
       </div>
     </>

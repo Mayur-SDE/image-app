@@ -7,6 +7,7 @@ import "../src/styles/style.css";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { Link as Scroll } from "react-scroll";
+import MyApp from "./pages/components/MyApp";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +43,7 @@ export default function App() {
       <CssBaseline />
       <HomePage />
       <ImageTrain />
+      {/* <MyApp /> */}
       <footer className={classes.footerInfo}>
         <h2 className={classes.footerTitle}>
           For More Info Visit:{" "}
