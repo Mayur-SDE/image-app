@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Slider from "@material-ui/core/Slider";
 import { file } from "jszip";
+import { Link as Scroll } from "react-scroll";
 
 // import { file } from 'jszip';
 var zip = require("jszip")();
@@ -161,7 +162,6 @@ function ImageTrain() {
       <div className="file-card" id="place-to-visit">
         <div className="file-inputs">
           <input
-            accept="image/*"
             multiple
             type="file"
             onChange={(e) => covertBaseImages(e.target.files)}
@@ -190,7 +190,12 @@ function ImageTrain() {
             onChange={handlevalidateChange}
           />
         </div>
-        <p className="main">All type of images supports</p>
+        <div className="seperat-div">
+          <p className="main">All type of images supports</p>
+          <Scroll to="header" smooth={true}>
+            <Button className="btn-info">GoBack</Button>
+          </Scroll>
+        </div>
       </div>
     </>
   );

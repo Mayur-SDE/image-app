@@ -88,13 +88,13 @@ img {
   justify-content: end;
   align-items: center;
   padding-bottom: 20px;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .btn-container .btn-Info {
-  background-color: transparent;
+  background-color: black;
   font-weight: 700;
-  width: 80px;
+  width: 100px;
   border: 1px dashed #c5daf3;
   text-shadow: 1px 1px 2px rgb(46, 44, 44), 0 0 1em rgb(1, 1, 10),
     0 0 0.2em rgb(13, 13, 14);

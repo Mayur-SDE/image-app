@@ -144,3 +144,18 @@
   display: flex;
   justify-content: space-between;
 }
+
+.seperat-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.seperat-div .btn-info {
+  background-color: black;
+  margin-top: 15px;
+  margin-left: 100px;
+  width: 120px;
+  color: #fff;
+  border: 1px dashed #c5daf3;
+}

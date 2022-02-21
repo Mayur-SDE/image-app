@@ -7,7 +7,6 @@ import "../src/styles/style.css";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { Link as Scroll } from "react-scroll";
-import MyApp from "./pages/components/MyApp";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    justifyContent: "space-between",
   },
   footerTitle: {
     color: "white",
@@ -43,29 +43,7 @@ export default function App() {
       <CssBaseline />
       <HomePage />
       <ImageTrain />
-      {/* <MyApp /> */}
-      <footer className={classes.footerInfo}>
-        <h2 className={classes.footerTitle}>
-          For More Info Visit:{" "}
-          <a
-            style={{ cursor: "pointer", textDecoration: "none" }}
-            href="https://visionify.ai/"
-          >
-            Visionify.ai
-          </a>
-        </h2>
-        <LinkedInIcon className={classes.LinkedInIconInfo} />
-        <GitHubIcon className={classes.GitHubIconInfo} />
-      </footer>
-      <fileDownloader className={classes.fileDownloaderInfo} />
-
-      <Scroll to="header" smooth={true}>
-        {/* <IconButton> */}
-        <div className="btn-container">
-          <Button className="btn-Info">Go Back</Button>
-        </div>
-        {/* </IconButton> */}
-      </Scroll>
+      <br></br>
     </div>
   );
 }
