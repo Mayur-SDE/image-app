@@ -71,6 +71,16 @@ function ImageTrain() {
   const [files, setFiles] = useState([]);
   const [minValidate, setminValidate] = useState(70);
   const [maxValidate, setmaxValidate] = useState(90);
+  // const [otherValue, setOtherValue] = useState(100);
+
+  const [trainRange, setTrainRange] = useState(70);
+  const [trainSlider, setTrainSlider] = useState("Train");
+
+  const [ValidRange, setValidRange] = useState(90);
+  const [ValidSlider, setValidSlider] = useState("Valid");
+
+  const [testRange, settestRange] = useState(100);
+  const [testSlider, settestSlider] = useState("Test");
 
   let totalImages;
   let trainImagesLen = 0;
@@ -103,6 +113,10 @@ function ImageTrain() {
     // console.log("change");
     setminValidate(newValue[0]);
     setmaxValidate(newValue[1]);
+    // setOtherValue(newValue[2]);
+    setTrainRange(newValue[0]);
+    setValidRange(newValue[1]);
+    settestRange(newValue[2]);
     totalImages = files.length;
     trainImagesLen = Math.floor(totalImages * (minValidate / 100));
     trainImages = files.slice(0, trainImagesLen);
@@ -173,27 +187,43 @@ function ImageTrain() {
             Click Here
           </button>
         </div>
+        <div className="main-selector">
+          <p>Rebalance your Dataset</p>
+          <Typography gutterBottom className="typo-info">
+            <div>
+              <p>{trainSlider}</p>
+              <p>{trainRange}</p>
+            </div>
+            <div>
+              <p>{ValidSlider}</p>
+              <p>{ValidRange}</p>
+            </div>
+            {/* <div>
+              <p>{testSlider}</p>
+              <p>{testRange}</p>
+            </div> */}
+          </Typography>
+
+          <PrettoSlider
+            // valueLabelDisplay="auto"
+            aria-label="pretto slider"
+            value={[minValidate, maxValidate]}
+            step={10}
+            onChange={handlevalidateChange}
+            className="gutterBtn"
+            onValueChange={(value) => setTrainRange(value)}
+          />
+        </div>
         <div className="btn-wrapper">
           <Button onClick={() => exportZip()} className="btn-default">
             Download Images
           </Button>
         </div>
 
-        <div className="main-selector">
-          <Typography gutterBottom className="gutterBtn"></Typography>
-
-          <PrettoSlider
-            valueLabelDisplay="auto"
-            aria-label="pretto slider"
-            value={[minValidate, maxValidate]}
-            step={1}
-            onChange={handlevalidateChange}
-          />
-        </div>
         <div className="seperat-div">
           <p className="main">All type of images supports</p>
           <Scroll to="header" smooth={true}>
-            <Button className="btn-info">GoBack</Button>
+            <Button className="btn-info">Go Back</Button>
           </Scroll>
         </div>
       </div>

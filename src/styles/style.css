@@ -100,3 +100,7 @@ img {
     0 0 0.2em rgb(13, 13, 14);
   color: #fff;
 }
+
+.Icon-btn {
+  display: flex;
+}
