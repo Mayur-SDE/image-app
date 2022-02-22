@@ -74,13 +74,8 @@ function ImageTrain() {
   // const [otherValue, setOtherValue] = useState(100);
 
   const [trainRange, setTrainRange] = useState(70);
-  const [trainSlider, setTrainSlider] = useState("Train");
 
   const [ValidRange, setValidRange] = useState(90);
-  const [ValidSlider, setValidSlider] = useState("Valid");
-
-  const [testRange, settestRange] = useState(100);
-  const [testSlider, settestSlider] = useState("Test");
 
   let totalImages;
   let trainImagesLen = 0;
@@ -116,7 +111,7 @@ function ImageTrain() {
     // setOtherValue(newValue[2]);
     setTrainRange(newValue[0]);
     setValidRange(newValue[1]);
-    settestRange(newValue[2]);
+    // settestRange(newValue[2]);
     totalImages = files.length;
     trainImagesLen = Math.floor(totalImages * (minValidate / 100));
     trainImages = files.slice(0, trainImagesLen);
@@ -191,11 +186,11 @@ function ImageTrain() {
           <p>Rebalance your Dataset</p>
           <Typography gutterBottom className="typo-info">
             <div>
-              <p>{trainSlider}</p>
+              <p>Train</p>
               <p>{trainRange}</p>
             </div>
             <div>
-              <p>{ValidSlider}</p>
+              <p>Validate</p>
               <p>{ValidRange}</p>
             </div>
             {/* <div>
@@ -211,7 +206,6 @@ function ImageTrain() {
             step={10}
             onChange={handlevalidateChange}
             className="gutterBtn"
-            onValueChange={(value) => setTrainRange(value)}
           />
         </div>
         <div className="btn-wrapper">
